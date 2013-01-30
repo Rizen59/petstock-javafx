@@ -5,9 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import fr.utbm.petstock.view.TopMenuBar;
+import fr.utbm.petstock.view.app.DataWindow;
 import fr.utbm.petstock.view.vmenu.VerticalMenu;
 
 public class Petstock extends Application {
@@ -16,6 +18,7 @@ public class Petstock extends Application {
 	
 	private MenuBar menuBar = new TopMenuBar();
 	private TitledPane verticalMenu = new VerticalMenu();
+	private TitledPane dataWindow = new DataWindow();
     
 	
     @Override
@@ -23,7 +26,9 @@ public class Petstock extends Application {
         primaryStage.setTitle("Application PetStocks");
         
         root.getChildren().addAll(menuBar, hLayout);
-        hLayout.getChildren().addAll(verticalMenu);
+        hLayout.getChildren().addAll(verticalMenu, dataWindow);
+        
+        HBox.setHgrow(dataWindow, Priority.ALWAYS);
         
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add("/css/style.css");
